@@ -3,6 +3,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class Countries {
     static final String FILE_Name = "countries.txt";
@@ -36,6 +37,19 @@ public class Countries {
 
         }
         System.out.println("");
+
+        System.out.println("Please enter a letter");
+        Scanner scanner = new Scanner(System.in);
+        String countryLetter = scanner.nextLine();
+        String newCountryFile = String.format("%s_countries.txt", countryLetter);
+
+        if(countryAbv.containsKey(countryLetter)) {
+            String newLine = "";
+            for (Country newCont : countryAbv.get(countryLetter)) {
+                newLine = newLine + String.format("%s %s \n", newCont.abbreviation,newCont.name );
+            }
+            writeFile(newCountryFile, newLine);
+        }
 
     }
     static String readFile(String fileName){
