@@ -12,22 +12,22 @@ public class Countries {
 
         HashMap<String, ArrayList<Country>> countryAbv  = new HashMap();
         String countryContent = readFile("countries.txt");
-        String [] lines = countryContent.split("\n");
+        String [] lines = countryContent.split("\n");//split the file of countries into individual lines
         ArrayList<Country> cont = new ArrayList();
 
-        for (String line : lines) {
-            String[] columns = line.split("\\|");
-            String name = columns[1] ;
+        for (String line : lines) {//loop for temp variable line
+            String[] columns = line.split("\\|");//splitting line into multiple columns,\\ means to split
+            String name = columns[1] ;//temporary variables
             String abbreviation = columns[0];
-            Country country = new Country(name ,abbreviation);
-            cont.add(country);
+            Country country = new Country(name ,abbreviation);//creating country object
+            cont.add(country);//
         }
 
         for (Country country : cont) {
             String firstLetter = String.valueOf(country.name.charAt(0));
-            ArrayList<Country> list = countryAbv.get(firstLetter);
+            ArrayList<Country> list = countryAbv.get(firstLetter);//getting array list for first letter
             if( list == null){
-                list = new ArrayList();
+                list = new ArrayList();//creating array list and adding country object to it
                 list.add(country);
                 countryAbv.put(firstLetter, list);
 
